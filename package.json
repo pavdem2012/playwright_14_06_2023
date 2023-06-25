@@ -1,0 +1,28 @@
+{
+  "name": "qa_js_2023_03_ui_ux",
+  "version": "1.0.0",
+  "description": "Homework for 18 lesson from OTUS",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha --timeout 10000 src/tests/*.test.js",
+    "lint": "eslint --fix ."
+  },
+  "keywords": [],
+  "author": "Demenchuk",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "faker": "^5.5.3",
+    "mocha": "^10.2.0",
+    "playwright": "^1.35.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.43.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "mocha": "^10.2.0"
+  }
+}
