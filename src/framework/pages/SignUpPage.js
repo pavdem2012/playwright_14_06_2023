@@ -24,7 +24,8 @@ export default class SignUpPage {
     mobileNumField: 'input[data-qa="mobile_number"]',
     createAccBtn: 'button[data-qa="create-account"]',
     accCreateHeader: 'h2[data-qa="account-created"]',
-    continueBtn: 'a[data-qa="continue-button"]'
+    continueBtn: 'a[data-qa="continue-button"]',
+    accDeleteHeader:'h2[data-qa="account-deleted"]'
   }
 
   functions = {

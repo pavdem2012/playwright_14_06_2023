@@ -8,17 +8,10 @@ export default class LoginPage {
     nameField: 'input[data-qa="signup-name"]',
     emailField: 'input[data-qa="signup-email"]',
     signUpBtn: 'button[data-qa="signup-button"]',
-    regUsForm: 'div[class="login-form"]',
-    accInfoBlock: 'div[class="login-form"]',
-    titleRad: 'input[value="Mr"]',
-    nameRegField: 'input[data-qa="signup-name"]',
-    emailRegField: 'input[data-qa="signup-email"]',
-    passRegField: 'input[data-qa="password"]',
-    dateRegField: 'select[data-qa="days"]',
-    monthRegField: 'select[data-qa="months"]',
-    yearRegField: 'select[data-qa="years"]',
-    newsCheckBox: 'input[name="newsletter"]',
-    specCheckBox: 'input[name="optin"]'
+    loginForm: 'div[class="login-form"]',
+    emailLogField: 'input[data-qa="login-email"]',
+    passLogField: 'input[data-qa="login-password"]',
+    loginBtn: 'button[data-qa="login-button"]'
   }
 
   functions = {
@@ -28,6 +21,12 @@ export default class LoginPage {
       await page.fill(LoginPage.selectors.nameField, user.firstName)
       await page.fill(LoginPage.selectors.emailField, user.email)
       await page.click(LoginPage.selectors.signUpBtn)
+    },
+
+    async fillLoginUsForm (page) {
+      await page.fill(LoginPage.selectors.emailLogField, user.email)
+      await page.fill(LoginPage.selectors.passLogField, user.userPass)
+      await page.click(LoginPage.selectors.loginBtn)
     }
   }
 }
