@@ -1,7 +1,7 @@
 import siteMap from '../framework/config/siteMap.js'
 import LoginPage, {user} from '../framework/pages/LoginPage.js'
 import {expect} from 'chai'
-import {chromium} from 'playwright'
+import {webkit,chromium,firefox} from 'playwright'
 import BasePage from '../framework/pages/BasePage.js'
 import SignUpPage from '../framework/pages/SignUpPage.js'
 
@@ -12,7 +12,7 @@ describe('login/logout tests', () => {
   let browser, context, page
 
   beforeEach(async () => {
-    browser = await chromium.launch({ headless: false })
+    browser = await webkit.launch({ headless: false })
     context = await browser.newContext()
     page = await context.newPage()
     await page.goto(siteMap.pages.basePage)
@@ -52,7 +52,7 @@ describe('login/logout tests', () => {
     expect(await page.url()).to.equal(siteMap.pages.loginPage)
   });
 
-  it("failed to login with wrong credentials", async () => {
+  it("failed to login with wrong password", async () => {
     await page.click(basePage.selectors.signUpBtn)
     expect(await page.url()).to.equal(siteMap.pages.loginPage)
     expect(await page.textContent(LoginPage.selectors.signUpForm)).to.include('New User Signup!')
@@ -65,7 +65,21 @@ describe('login/logout tests', () => {
     });
     expect(text).to.include("Your email or password is incorrect!");
     expect(await page.url()).to.equal(siteMap.pages.loginPage)
+  });
 
+  it("failed to login with wrong email", async () => {
+    await page.click(basePage.selectors.signUpBtn)
+    expect(await page.url()).to.equal(siteMap.pages.loginPage)
+    expect(await page.textContent(LoginPage.selectors.signUpForm)).to.include('New User Signup!')
+    await page.fill(LoginPage.selectors.emailLogField, "example@exomple.com")
+    await page.fill(LoginPage.selectors.passLogField, user.userPass)
+    await page.click(LoginPage.selectors.loginBtn)
+    let text=await page.evaluate(() => {
+      let element = document.querySelector('p[style="color: red;"]');
+      return element.textContent || element.innerText || element.firstChild.nodeValue
+    });
+    expect(text).to.include("Your email or password is incorrect!");
+    expect(await page.url()).to.equal(siteMap.pages.loginPage)
   });
 
   it('failed to register with exiting eMail ', async () =>{
