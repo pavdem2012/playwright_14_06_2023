@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "mocha --timeout 60000 src/tests/*.test.js",
+    "custom-test": "npm run test",
     "lint": "eslint --fix ."
   },
   "keywords": [],
@@ -18,9 +19,10 @@
     "playwright": "^1.35.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.35.1",
     "eslint": "^8.43.0",
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^16.0.1",
     "eslint-plugin-promise": "^6.1.1",
     "mocha": "^10.2.0"
